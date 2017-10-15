@@ -42,5 +42,5 @@ CREATE TABLE transactions (
     category_id INT8 REFERENCES categories(id),
     vendor_id INT8 REFERENCES vendors(id),
     purchase_date DATE,
-    amount_spent INT
+    amount_spent FLOAT
 );
