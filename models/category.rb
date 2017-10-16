@@ -35,4 +35,11 @@ class Category
         values = []
         SqlRunner.run(sql, values)
     end
+
+    def transactions()
+        sql = "SELECT * FROM transactions WHERE transactions.category_id = $1;"
+        values = []
+        results = SqlRunner.run(sql, values)
+        return results.map { |transaction| Transaction.new(transaction) }
+    end
 end

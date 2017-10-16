@@ -26,12 +26,11 @@ class Transaction
     # end
 
 
-    def save(budget)
+    def save()
         sql = "INSERT INTO transactions (user_id, category_id, vendor_id, purchase_date, amount_spent) VALUES ($1, $2, $3, $4, $5) RETURNING id;"
         values = [@user_id, @category_id, @vendor_id, @purchase_date, @amount_spent]
         transaction = SqlRunner.run(sql, values).first()
         @id = transaction['id'].to_i
-        # budget_update(budget)
     end
 
     def update()

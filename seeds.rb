@@ -55,10 +55,13 @@ transaction3 = Transaction.new( { 'user_id' => user.id, 'category_id' => categor
 
 transaction4 = Transaction.new( { 'user_id' => user.id, 'category_id' => category4.id(), 'vendor_id' => vendor1.id, 'purchase_date' => '2017/01/27', 'amount_spent' => 250.00 } )
 
-transaction1.save(budget)
-transaction2.save(budget)
-transaction3.save(budget)
-transaction4.save(budget)
+transaction5 = Transaction.new( { 'user_id' => user.id, 'category_id' => category1.id(), 'vendor_id' => vendor1.id, 'purchase_date' => '2017/01/27', 'amount_spent' => 47.00 } )
+
+transaction1.save()
+transaction2.save()
+transaction3.save()
+transaction4.save()
+transaction5.save()
 
 budget.remaining_update()
 
