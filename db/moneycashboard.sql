@@ -8,15 +8,15 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     id SERIAL8 PRIMARY KEY,
     name VARCHAR(255),
-    reason VARCHAR(255)
+    goals VARCHAR(255)
 );
 
 CREATE TABLE budgets (
     id SERIAL8 PRIMARY KEY,
     user_id INT8 REFERENCES users(id),
     type VARCHAR(255),
-    initial INT,
-    remaining INT
+    initial FLOAT,
+    remaining FLOAT
 );
 
 CREATE TABLE categories (

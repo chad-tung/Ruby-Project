@@ -20,7 +20,7 @@ class Limit
     end
 
     def update()
-        sql = "UPDATE limits SET (user_id, category_id, percentage) VALUES ($1, $2, $3) WHERE id = $4;"
+        sql = "UPDATE limits SET (user_id, category_id, percentage) = ($1, $2, $3) WHERE id = $4;"
         values = [@user_id, @category_id, @percentage, @id]
         SqlRunner.run(sql, values)
     end

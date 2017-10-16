@@ -13,11 +13,25 @@ class Transaction
         @amount_spent = options['amount_spent'].to_f
     end
 
-    def save()
+    # def budget_update(budget)
+    #     sql = "SELECT budgets.remaining FROM budgets;"
+    #     values = []
+    #     result = SqlRunner.run(sql, values).first()['remaining']
+    #     @remaining = result.to_i - @amount_spent
+    #     @id = budget.id()
+    #     @type = budget.type()
+    #     @user_id = budget.user_id
+    #     @initial = budget.initial()
+    #     budget.update()
+    # end
+
+
+    def save(budget)
         sql = "INSERT INTO transactions (user_id, category_id, vendor_id, purchase_date, amount_spent) VALUES ($1, $2, $3, $4, $5) RETURNING id;"
         values = [@user_id, @category_id, @vendor_id, @purchase_date, @amount_spent]
         transaction = SqlRunner.run(sql, values).first()
         @id = transaction['id'].to_i
+        # budget_update(budget)
     end
 
     def update()

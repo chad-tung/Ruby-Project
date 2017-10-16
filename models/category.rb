@@ -1,4 +1,4 @@
-require_relative 'sql_runner'
+require_relative '../db/sql_runner'
 
 class Category
 
@@ -18,7 +18,7 @@ class Category
     end
 
     def update()
-        sql = "UPDATE categories SET (name) VALUES ($1) WHERE id = $2;"
+        sql = "UPDATE categories SET (name) = ($1) WHERE id = $2;"
         values = [@name, @id]
         SqlRunner.run(sql, values)
     end
@@ -28,6 +28,7 @@ class Category
         values = []
         results = SqlRunner.run(sql, values)
         return results.map { |category| Category.new(category) }
+    end
 
     def self.delete_all()
         sql = "DELETE FROM categories;"

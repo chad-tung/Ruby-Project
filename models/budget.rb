@@ -2,26 +2,25 @@ require_relative '../db/sql_runner'
 
 class Budget
 
-    attr_accessor :type, :initial, :remaining
-    attr_reader :id, :user_id
+    attr_accessor :type, :initial, :remaining, :id, :user_id
 
     def initialize(options)
         @id = options['id'].to_i if options['id']
         @user_id = options['user_id']
         @type = options['type']
-        @initial = options['initial']
-        @remaining = options['remaining']
+        @initial = options['initial'].to_f
+        @remaining = options['remaining'].to_f
     end
 
     def save()
-        sql = "INSERT INTO budgets (user_id, type, initial, remaining) VALUES ($1, $2, $3, $4);"
+        sql = "INSERT INTO budgets (user_id, type, initial, remaining) VALUES ($1, $2, $3, $4) RETURNING id;"
         values = [@user_id, @type, @initial, @remaining]
         result = SqlRunner.run(sql, values).first()
         @id = result['id'].to_i
     end
 
     def update()
-        sql = "UPDATE budgets SET (user_id, type, initial, remaining) VALUES ($1, $2, $3, $4) WHERE id = $5;"
+        sql = "UPDATE budgets SET (user_id, type, initial, remaining) = ($1, $2, $3, $4) WHERE id = $5;"
         values = [@user_id, @type, @initial, @remaining, @id]
         SqlRunner.run(sql, values)
     end
@@ -43,6 +42,15 @@ class Budget
         values = [id]
         budget = SqlRunner.run(sql, values).first()
         return Budget.new(budget)
+    end
+
+    def remaining_update()
+        sql = "SELECT transactions.amount_spent FROM transactions WHERE transactions.user_id = $1;"
+        values = [@user_id]
+        results = SqlRunner.run(sql, values)
+        total_transactions = results.map { |amount| amount['amount_spent'].to_f }
+        @remaining = @initial - total_transactions.sum()
+        update()
     end
 
 end
