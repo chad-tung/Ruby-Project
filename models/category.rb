@@ -38,7 +38,7 @@ class Category
 
     def transactions()
         sql = "SELECT * FROM transactions WHERE transactions.category_id = $1;"
-        values = []
+        values = [@id]
         results = SqlRunner.run(sql, values)
         return results.map { |transaction| Transaction.new(transaction) }
     end

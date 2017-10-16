@@ -50,4 +50,50 @@ class Limit
         limit = SqlRunner.run(sql, values).first()
         return Limit.new(limit)
     end
+
+    def check()
+        #Get the amount_spent from transactions and the category name.
+        sql = "SELECT transactions.amount_spent, categories.name FROM transactions INNER JOIN categories ON transactions.category_id = categories.id WHERE categories.id = $1;"
+        values = [@category_id]
+
+        #set variables which store these values. We know that category name will be the same, but for total, will have to sum up the amount_spent values.
+        amounts = SqlRunner.run(sql, values)
+        category = amounts.first()['name'].downcase()
+        total = amounts.map { |transaction| transaction['amount_spent'].to_f }.sum()
+
+        #Have to compare these values to the available budget for that category, so need the initial budget value
+        sql2 = "SELECT budgets.initial FROM budgets;"
+        values2 = []
+        budget_initial = SqlRunner.run(sql2, values2).first()['initial'].to_f
+
+        #Need to find out what the monetary value of the limit is based on the total budget and percentage allocated
+        limit_budget = budget_initial * @percentage
+        budget_left = limit_budget - total
+        percentage_left = (budget_left/limit_budget * 100).round(2)
+
+        #set up a string variables so we don't repeat ourselves.
+        warning = "Warning, limit for #{category}"
+        leftover = "You have $#{budget_left} remaining (#{percentage_left}%)"
+
+        #Apply logic to show users how much they have left and warn them of overspending in certain categories.
+
+        if total == limit_budget
+            return "#{warning} reached."
+        elsif total > limit_budget
+            return "#{warning} exceeded by $#{- budget_left} (#{- percentage_left}%). Immediately re-strategise your spending on #{category}."
+        elsif percentage_left < 20
+            return "#{warning} is being approached. #{leftover}."
+        else
+            return "#{leftover} for #{category}."
+        end
+    end
+
+    def self.check_all()
+        all_limits = Limit.all()
+        checker = []
+        for limit in all_limits
+            checker << limit.check()
+        end
+        return checker
+    end
 end

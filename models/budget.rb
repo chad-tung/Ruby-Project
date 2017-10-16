@@ -2,7 +2,8 @@ require_relative '../db/sql_runner'
 
 class Budget
 
-    attr_accessor :type, :initial, :remaining, :id, :user_id
+    attr_accessor :type, :initial, :remaining
+    attr_reader :id, :user_id
 
     def initialize(options)
         @id = options['id'].to_i if options['id']
@@ -52,5 +53,23 @@ class Budget
         @remaining = @initial - total_transactions.sum()
         update()
     end
+
+    def check()
+        sql = "SELECT budgets.initial, budgets.remaining FROM budgets WHERE id = $1;"
+        values = [@id]
+        initial = SqlRunner.run(sql, values).first()['initial'].to_f
+        remaining = SqlRunner.run(sql, values).first()['remaining'].to_f
+        percentage_left = (remaining/initial * 100).round(2)
+        string = "#{percentage_left}% of your budget remaining."
+        if percentage_left < 0
+            return "You have exceeded your budget by #{- percentage_left}. Doh..."
+        elsif percentage_left < 20
+            return "Warning, you only have #{string}"
+        else
+            return "You have #{string}"
+        end
+    end
+
+
 
 end
