@@ -1,8 +1,16 @@
-<h1>Hi <%= @user.name() %>, welcome back to your account. </h1>
-<h2>Here's your remaining budget</h2>
-<p><%=(@user.budget()).check() %> $<%= (@user.budget()).remaining() %></p>
-<p></p>
-<p></p>
+<h2>Hi <%= @user.name() %>, welcome back to your account. </h2>
+<h3>Here's a quick summary of your budget status and expenditure:</h3>
+
+<ul>
+    <li><%=(@user.budget()).check() %></li>
+    <br>
+    <li>Your current remaining balance is $<%= (@user.budget()).remaining() %></li>
+    <br>
+    <li>Since using this app, you've logged <%=@transactions.count()%> transactions, totalling to $<%=((@user.budget).initial - (@user.budget).remaining) %></li>
+</ul>
+
+
+<h3>Would you like to add in a recent transaction?</h3>
 
 <form action="/moneycashboard/transaction-complete" method="POST">
     <div class="">
@@ -30,7 +38,7 @@
 
 
 
-        <label for="dateInput">Date of purchase: (YYYY/MM/DD)</label>
+        <label for="dateInput">Date of purchase:</label>
         <input type="date" name="purchase_date" id="dateInput" />
         <br>
 

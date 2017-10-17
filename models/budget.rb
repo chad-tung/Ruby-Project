@@ -32,6 +32,13 @@ class Budget
         SqlRunner.run(sql, values)
     end
 
+    def self.all()
+        sql = "SELECT * FROM budgets;"
+        values = []
+        results = SqlRunner.run(sql, values)
+        return results.map { |budget| Budget.new(budget) }
+    end
+
     def self.delete_all()
         sql = "DELETE FROM budgets;"
         values = []
@@ -55,6 +62,7 @@ class Budget
     end
 
     def check()
+        remaining_update()
         sql = "SELECT budgets.initial, budgets.remaining FROM budgets WHERE id = $1;"
         values = [@id]
         initial = SqlRunner.run(sql, values).first()['initial'].to_f
@@ -62,14 +70,12 @@ class Budget
         percentage_left = (remaining/initial * 100).round(2)
         string = "#{percentage_left}% of your budget remaining."
         if percentage_left < 0
-            return "You have exceeded your budget by #{- percentage_left}. Doh..."
+            return "You have exceeded your budget by #{- percentage_left}%. Doh..."
         elsif percentage_left < 20
             return "Warning, you only have #{string}"
         else
             return "You have #{string}"
         end
     end
-
-
 
 end

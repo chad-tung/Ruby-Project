@@ -57,4 +57,13 @@ class Category
         return result
     end
 
+    def limits()
+        sql = "SELECT * FROM limits WHERE limits.category_id = $1;"
+        values = [@id]
+        result = SqlRunner.run(sql, values).first()
+        return Limit.new(result)
+    end
+
+    
+
 end

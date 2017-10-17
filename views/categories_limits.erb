@@ -1,9 +1,15 @@
-<h1>Here is the list of categories and the limits you've set on each.</h1>
+<h2>Here is the list of categories and the limits you've set on each.</h2>
 
 <% @categories.each do |category| %>
-<p>Category: <%=category.name()%></p>
-<p>Limit: <%=category.limit_percentage() * 100%>%</p>
-<p></p>
-<p></p>
-<p></p>
+<h4>Summary of category: <%=category.name()%></h4>
+<p>Limit initial: <%=category.limit_percentage*100%>% of budget</p>
+<p>Limit left: <%=(category.limits).check%></p>
+<h5>Here are a list of the purchases within the category <%=category.name().downcase()%></h5>
+<% category.transactions.each do |transaction| %>
+<p>Date: <%=transaction.purchase_date%></p>
+<p>Vendor: <%=transaction.vendor%></p>
+<p>Total: <%=transaction.amount_spent%></p>
+<br>
+<%end%>
+<hr>
 <%end%>

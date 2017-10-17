@@ -44,4 +44,11 @@ class Transaction
         values = []
         SqlRunner.run(sql, values)
     end
+
+    def vendor()
+        sql = "SELECT vendors.name FROM vendors WHERE vendors.id = $1;"
+        values = [@vendor_id]
+        return SqlRunner.run(sql, values).first()['name']
+    end
+
 end

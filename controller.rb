@@ -14,6 +14,7 @@ get '/moneycashboard' do
     @user = User.all().first()
     @categories = Category.all()
     @vendors = Vendor.all()
+    @transactions = Transaction.all()
     erb( :homepage )
 end
 
@@ -30,11 +31,20 @@ end
 get '/moneycashboard/categories_limits' do
     @categories = Category.all()
     @limits = Limit.all()
+    @vendors = Vendor.all()
     erb( :categories_limits )
+end
+
+get '/moneycashboard/budget' do
+    @budget = Budget.all().first()
+    @budget.remaining_update()
+    erb( :budget )
 end
 
 post '/moneycashboard/transaction-complete' do
     @transaction = Transaction.new(params)
     @transaction.save()
+    @budget = Budget.all().first()
+    @budget.remaining_update
     erb( :transaction_complete )
 end
