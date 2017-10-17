@@ -32,6 +32,8 @@ get '/moneycashboard/categories_limits' do
     @categories = Category.all()
     @limits = Limit.all()
     @vendors = Vendor.all()
+    @budget = Budget.all().first()
+    @budget.remaining_update()
     erb( :categories_limits )
 end
 

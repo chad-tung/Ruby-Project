@@ -14,7 +14,7 @@ Category.delete_all()
 Budget.delete_all()
 User.delete_all()
 
-user = User.new({'name' => 'Jayne Kenny', 'goals' => 'wish to save up for a 2 year teaching course in Australia.'})
+user = User.new({'name' => 'Jayne Kenny', 'goals' => 'wish to save up for a 2 year teaching course in Australia'})
 user.save()
 
 budget = Budget.new( { 'user_id' => user.id, 'type' => 'monthly', 'initial' => 2000.00, 'remaining' => 2000.00 } )

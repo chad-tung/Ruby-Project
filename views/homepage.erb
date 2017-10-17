@@ -9,6 +9,8 @@
     <li>Since using this app, you've logged <%=@transactions.count()%> transactions, totalling to $<%=((@user.budget).initial - (@user.budget).remaining) %></li>
 </ul>
 
+<h4>Remember, you are budgeting as you <%= @user.goals%>!</h4>
+
 
 <h3>Would you like to add in a recent transaction?</h3>
 

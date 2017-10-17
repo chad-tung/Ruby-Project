@@ -2,8 +2,10 @@
 
 <% @categories.each do |category| %>
 <h4>Summary of category: <%=category.name()%></h4>
-<p>Limit initial: <%=category.limit_percentage*100%>% of budget</p>
+<p>Limit: <%=category.limit_percentage*100%>% of budget = $<%=@budget.initial * category.limit_percentage%></p>
+<p>Total spent: $<%=category.sum_transactions()%></p>
 <p>Limit left: <%=(category.limits).check%></p>
+
 <h5>Here are a list of the purchases within the category <%=category.name().downcase()%></h5>
 <% category.transactions.each do |transaction| %>
 <p>Date: <%=transaction.purchase_date%></p>

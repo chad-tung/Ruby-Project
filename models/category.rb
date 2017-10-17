@@ -50,6 +50,14 @@ class Category
         return results.map { |transaction| Transaction.new(transaction) }
     end
 
+    def sum_transactions()
+        sql = "SELECT transactions.amount_spent FROM transactions WHERE transactions.category_id = $1;"
+        values = [@id]
+        results = SqlRunner.run(sql, values)
+        expenditure = results.map {|transaction| transaction['amount_spent'].to_f}
+        return expenditure.sum()
+    end
+
     def limit_percentage()
         sql = "SELECT limits.percentage FROM limits WHERE limits.category_id = $1;"
         values = [@id]
@@ -64,6 +72,6 @@ class Category
         return Limit.new(result)
     end
 
-    
+
 
 end
