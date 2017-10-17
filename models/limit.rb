@@ -26,7 +26,7 @@ class Limit
     end
 
     def delete()
-        sql = "DELETE * FROM limits WHERE id = $1;"
+        sql = "DELETE FROM limits WHERE id = $1;"
         values = [@id]
         SqlRunner.run(sql, values)
     end

@@ -50,3 +50,9 @@ post '/moneycashboard/transaction-complete' do
     @budget.remaining_update
     erb( :transaction_complete )
 end
+
+post '/moneycashboard/transaction-deleted/:id' do
+    @transaction = Transaction.find(params['id'])
+    @transaction.delete()
+    erb( :transaction_complete )
+end

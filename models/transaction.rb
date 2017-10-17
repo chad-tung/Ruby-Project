@@ -33,8 +33,15 @@ class Transaction
         return results.map { |transaction| Transaction.new(transaction) }
     end
 
+    def self.find(id)
+        sql = "SELECT * FROM transactions WHERE id = $1;"
+        values = [id]
+        result = SqlRunner.run(sql, values).first()
+        return Transaction.new(result)
+    end
+
     def delete()
-        sql = "DELETE * FROM transactions WHERE id = $1;"
+        sql = "DELETE FROM transactions WHERE id = $1;"
         values = [@id]
         SqlRunner.run(sql, values)
     end

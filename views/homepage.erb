@@ -1,3 +1,4 @@
+<div class="page">
 <h2>Hi <%= @user.name() %>, welcome back to your account. </h2>
 <h3>Here's a quick summary of your budget status and expenditure:</h3>
 
@@ -11,11 +12,11 @@
 
 <h4>Remember, you are budgeting as you <%= @user.goals%>!</h4>
 
-
+<div class="transaction_form">
 <h3>Would you like to add in a recent transaction?</h3>
 
 <form action="/moneycashboard/transaction-complete" method="POST">
-    <div class="">
+    <div class="transaction_form_selection">
         <label for="user">Select user:</label>
         <select name="user_id" id="userSelect">
             <option value="<%=@user.id%>"><%= @user.name() %></option>
@@ -51,6 +52,8 @@
         <input type="submit" value="Submit" />
     </div>
 </form>
+</div>
+</div>
 
         <!-- ALL COMPLETE TRASH  -->
         <!-- <br>

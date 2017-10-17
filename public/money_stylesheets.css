@@ -1,3 +1,48 @@
 body {
     margin: 0;
 }
+
+.heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #7F95D1;
+    margin: 0;
+}
+
+.heading h1 {
+    justify-content: center;
+}
+
+.navigation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #FF82A9;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.navigation li {
+    font-size: 24px;
+}
+
+.navigation li a {
+    text-decoration: none;
+    color: black;
+}
+
+.navigation li a:hover {
+    color: white;
+}
+
+.page {
+    margin-left: 5%;
+}

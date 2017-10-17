@@ -1,3 +1,4 @@
+<div class="page">
 <h2>Here are a list of all your transactions</h2>
 
 <% @transactions.each do |transaction| %>
@@ -7,5 +8,10 @@
 <p>Date: <%=transaction.purchase_date()%></p>
 <p>Amount spent: $<%=transaction.amount_spent%></p>
 
+<form action="/moneycashboard/transaction-deleted/<%=transaction.id%>" method="post">
+    <input type="submit" value="Delete">
+</form>
+
 <hr>
 <%end%>
+</div>

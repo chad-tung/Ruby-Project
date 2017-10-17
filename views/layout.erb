@@ -11,21 +11,23 @@
 <body>
     <div class="heading">
     <h1>MoneyCashBoard</h1>
+    </div>
 
     <nav>
         <ul>
             <div class="navigation">
                 <li>
                     <a href="/moneycashboard">Home</a>
-                    <a href="/moneycashboard/view_transactions">Transactions</a>
-                    <a href="/moneycashboard/view_vendors">Vendors</a>
-                    <a href="/moneycashboard/categories_limits">Categories and Limits</a>
-                    <a href="/moneycashboard/budget">Budget</a>
                 </li>
+                <li><a href="/moneycashboard/view_transactions">Transactions</a></li>
+                <li><a href="/moneycashboard/view_vendors">Vendors</a></li>
+                <li><a href="/moneycashboard/categories_limits">Categories and Limits</a></li>
+                <li><a href="/moneycashboard/budget">Budget</a></li>
             </div>
         </ul>
     </nav>
-    </div>
+
     <%= yield %>
+    
 </body>
 </html>
