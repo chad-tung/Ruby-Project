@@ -36,6 +36,13 @@ class Vendor
         SqlRunner.run(sql, values)
     end
 
+    def self.find(id)
+        sql = "SELECT * FROM vendors WHERE vendors.id = $1"
+        values = [id]
+        vendor = SqlRunner.run(sql, values).first()
+        return Vendor.new(vendor)
+    end
+
     def transactions()
         sql = "SELECT * FROM transactions WHERE transactions.vendor_id = $1;"
         values = [@id]

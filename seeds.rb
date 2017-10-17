@@ -47,15 +47,15 @@ vendor2.save()
 vendor3.save()
 vendor4.save()
 
-transaction1 = Transaction.new( { 'user_id' => user.id, 'category_id' => category1.id(), 'vendor_id' => vendor2.id, 'purchase_date' => '2017/01/15', 'amount_spent' => 25.00 } )
+transaction1 = Transaction.new( { 'user_id' => user.id, 'category_id' => category1.id(), 'vendor_id' => vendor2.id, 'purchase_date' => '2017-01-15', 'amount_spent' => 25.00 } )
 
-transaction2 = Transaction.new( { 'user_id' => user.id, 'category_id' => category2.id(), 'vendor_id' => vendor4.id, 'purchase_date' => '2017/01/15', 'amount_spent' => 15.00 } )
+transaction2 = Transaction.new( { 'user_id' => user.id, 'category_id' => category2.id(), 'vendor_id' => vendor4.id, 'purchase_date' => '2017-01-15', 'amount_spent' => 15.00 } )
 
-transaction3 = Transaction.new( { 'user_id' => user.id, 'category_id' => category3.id(), 'vendor_id' => vendor3.id, 'purchase_date' => '2017/01/27', 'amount_spent' => 200.00 } )
+transaction3 = Transaction.new( { 'user_id' => user.id, 'category_id' => category3.id(), 'vendor_id' => vendor3.id, 'purchase_date' => '2017-01-27', 'amount_spent' => 200.00 } )
 
-transaction4 = Transaction.new( { 'user_id' => user.id, 'category_id' => category4.id(), 'vendor_id' => vendor1.id, 'purchase_date' => '2017/01/27', 'amount_spent' => 250.00 } )
+transaction4 = Transaction.new( { 'user_id' => user.id, 'category_id' => category4.id(), 'vendor_id' => vendor1.id, 'purchase_date' => '2017-01-27', 'amount_spent' => 250.00 } )
 
-transaction5 = Transaction.new( { 'user_id' => user.id, 'category_id' => category1.id(), 'vendor_id' => vendor1.id, 'purchase_date' => '2017/01/27', 'amount_spent' => 47.00 } )
+transaction5 = Transaction.new( { 'user_id' => user.id, 'category_id' => category1.id(), 'vendor_id' => vendor1.id, 'purchase_date' => '2017-01-27', 'amount_spent' => 47.00 } )
 
 transaction1.save()
 transaction2.save()

@@ -1,0 +1,11 @@
+<h1>Here are a list of all your transactions</h1>
+
+<% @transactions.each do |transaction| %>
+<p>ID: <%=transaction.id%></p>
+<p>Category: <%=(Category.find(transaction.category_id)).name()%></p>
+<p>Vendor: <%=(Vendor.find(transaction.vendor_id)).name()%></p>
+<p>Date: <%=transaction.purchase_date()%></p>
+<p>Amount spent: $<%=transaction.amount_spent%></p>
+
+<hr>
+<%end%>

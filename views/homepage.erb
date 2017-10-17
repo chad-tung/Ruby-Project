@@ -1,0 +1,75 @@
+<h1>Hi <%= @user.name() %>, welcome back to your account. </h1>
+<h2>Here's your remaining budget</h2>
+<p><%=(@user.budget()).check() %> $<%= (@user.budget()).remaining() %></p>
+<p></p>
+<p></p>
+
+<form action="/moneycashboard/transaction-complete" method="POST">
+    <div class="">
+        <label for="user">Select user:</label>
+        <select name="user_id" id="userSelect">
+            <option value="<%=@user.id%>"><%= @user.name() %></option>
+        </select>
+        <br>
+
+        <label for="category">Category:</label>
+        <select name="category_id" id="categorySelect">
+            <% @categories.each do |acategory| %>
+            <option value="<%=acategory.id() %>"><%= acategory.name()%></option>
+            <%end%>
+        </select>
+        <br>
+
+        <label for="vendor">Vendor:</label>
+        <select name="vendor_id" id="vendorSelect">
+            <% @vendors.each do |avendor| %>
+            <option value="<%=avendor.id() %>"><%= avendor.name()%></option>
+            <%end%>
+        </select>
+        <br>
+
+
+
+        <label for="dateInput">Date of purchase: (YYYY/MM/DD)</label>
+        <input type="date" name="purchase_date" id="dateInput" />
+        <br>
+
+        <label for="spentInput">Amount spent:</label>
+        <input type="float" name="amount_spent" id="spentInput" />
+        <br>
+
+        <input type="submit" value="Submit" />
+    </div>
+</form>
+
+        <!-- ALL COMPLETE TRASH  -->
+        <!-- <br>
+        <% date_info = [] %>
+        <label for="year">Year:</label>
+        <select name="year" id="yearSelect">
+            <% ('2015'..'2017').to_a.each do |year| %>
+            <option value="<% $year %>"><%= year %></option>
+            <%end%>
+        </select>
+        <label for="month">Month:</label>
+        <select name="month" id="monthSelect">
+            <% ('01'..'12').to_a.each do |month| %>
+            <option value="<% $month %>"><%= month %></option>
+            <%end%>
+        </select>
+        <label for="day">Day:</label>
+        <select name="day" id="daySelect">
+            <% ('01'..'31').to_a.each do |day| %>
+            <option value="<% $day %>"><%= day %></option>
+            <%end%>
+        </select>
+
+        <% date_info << $year %>
+        <% date_info << $month %>
+        <% date_info << $day %>
+        <label for "purchase_date"><%= "#{date_info[0]}/#{date_info[1]}/#{date_info[2]}"%></label>
+        <br>
+
+        <label for="spent">Amount spent:</label>
+        <input type="float" name="amount_spent" id="spentInput" />
+        <br> -->

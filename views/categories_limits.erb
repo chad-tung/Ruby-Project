@@ -1,0 +1,9 @@
+<h1>Here is the list of categories and the limits you've set on each.</h1>
+
+<% @categories.each do |category| %>
+<p>Category: <%=category.name()%></p>
+<p>Limit: <%=category.limit_percentage() * 100%>%</p>
+<p></p>
+<p></p>
+<p></p>
+<%end%>

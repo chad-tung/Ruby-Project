@@ -50,4 +50,11 @@ class User
         return User.new(user)
     end
 
+    def budget()
+        sql = "SELECT * FROM budgets WHERE budgets.user_id = $1;"
+        values = [@id]
+        result = SqlRunner.run(sql, values).first()
+        return Budget.new(result)
+    end
+
 end
