@@ -1,5 +1,5 @@
 body {
-    background-color: #FFEBE7;
+    background-color: white;
     margin: 0;
 }
 
@@ -7,7 +7,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: #7F95D1;
+    background-color: #465362;
     margin: 0;
 }
 
@@ -27,7 +27,7 @@ h3 {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: #FF82A9;
+    background-color: #ED254E;
     margin: 0;
 }
 
@@ -71,17 +71,24 @@ nav ul {
 
 
 table {
-
+    border-collapse: collapse;
     border-radius: 50px;
+    border-color: char;
+
 }
 
 td {
-  border-style: solid;
-  width: 300px;
-  border-color: char;
+  border-style: ridge;
+  width: 250px;
 }
 
-.table_heading {
+.transactions_table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.thead {
     font-weight: bold;
 }
 
@@ -97,6 +104,24 @@ td {
     align-items: center;
 }
 
+.vendor_transactions {
+    display: flex;
+}
+
+.category_transactions {
+    display: flex;
+    flex-direction: row;
+}
+
+.transaction_column {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-style: none;
+    border-width: 0px;
+    padding-right: 30px;
+}
+
 .transaction_form_selection {
     box-sizing: content-box;
     border-style: groove;
@@ -106,5 +131,7 @@ td {
     width: 300px;
     padding: 20px;
 }
+
+
 
    /*background-image: -webkit-linear-gradient(#FFEBE7, #FF82A9)*/

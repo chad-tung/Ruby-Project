@@ -15,12 +15,20 @@
 
     <% @vendors.each do |vendor| %>
     <h4><%=vendor.name%></h4>
-    <% vendor.transactions.each do |transaction| %>
-    <p>Date: <%=transaction.purchase_date()%></p>
-    <p>Category: <%=(Category.find(transaction.category_id)).name%></p>
-    <p>Amount spent: $<%=transaction.amount_spent%></p>
-    <hr>
-    <%end%>
+    <div class="vendor_transactions">
+
+        <% vendor.transactions.each do |transaction| %>
+
+        <div class="transaction_column">
+            <p>Date: <%=transaction.purchase_date()%></p>
+            <p>Category: <%=(Category.find(transaction.category_id)).name%></p>
+            <p>Amount spent: $<%=transaction.amount_spent%></p>
+            <hr>
+        </div>
+
+        <%end%>
+
+    </div>
     <hr>
     <%end%>
 </div>
