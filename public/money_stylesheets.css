@@ -15,6 +15,14 @@ body {
     justify-content: center;
 }
 
+h2 {
+    color: grey;
+}
+
+h3 {
+    color: maroon;
+}
+
 .navigation{
     display: flex;
     flex-direction: row;
@@ -45,23 +53,32 @@ nav ul {
 }
 
 .page {
-    margin-left: 10%;
+    margin-left: 8%;
+    margin-right: 8%
 }
 
-.side_form {
+.limit_form {
     display: flex;
-
+    flex-direction: column;
+    align-items: center;
 }
+
+.vendor_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 table {
-    margin-right: 5%;
+
     border-radius: 50px;
 }
 
 td {
   border-style: solid;
   width: 300px;
-  border-color: rgb(221, 20, 20);
+  border-color: char;
 }
 
 .table_heading {
@@ -70,6 +87,24 @@ td {
 
 .total {
     font-weight: bolder;
+}
+
+.transaction_form {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.transaction_form_selection {
+    box-sizing: content-box;
+    border-style: groove;
+    border-width: 10px;
+    border-color: rgb(9, 219, 166);
+    border-radius: 20px;
+    width: 300px;
+    padding: 20px;
 }
 
    /*background-image: -webkit-linear-gradient(#FFEBE7, #FF82A9)*/

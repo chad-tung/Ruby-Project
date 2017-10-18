@@ -1,39 +1,44 @@
 <div class="page transactions">
-    <h2>Here is a table of all your transactions</h2>
+    <h2>Transactions</h2>
 
-    <table>
-        <th scope="col">
-            <tr class="table_heading">
-                <td>Category</td>
-                <td>Vendor</td>
-                <td>Date</td>
-                <td>Amount spent</td>
-                <td>Delete</td>
-            </tr>
-        </th>
-        <tbody>
-            <% @transactions.each do |transaction| %>
-            <tr>
-                <td><%=(Category.find(transaction.category_id)).name()%></td>
-                <td><%=(Vendor.find(transaction.vendor_id)).name()%></td>
-                <td><%=transaction.purchase_date()%></td>
-                <td>$<%=transaction.amount_spent%></td>
-                <td><form action="/moneycashboard/transaction-deleted/<%=transaction.id%>" method="post"><input type="submit" value="Delete"></form></td>
-            </tr>
-            <%end%>
-            <tr>
-                <td></td>
-                <td></td>
-                <td class="total">Total spent</td>
-                <% @total = [] %>
+    <div class="transactions_table">
+
+
+        <h3>Here's a table of your logged transactions</h3>
+        <table>
+            <th scope="col">
+                <tr class="table_heading">
+                    <td>Date</td>
+                    <td>Category</td>
+                    <td>Vendor</td>
+                    <td>Amount spent</td>
+                    <td>Delete</td>
+                </tr>
+            </th>
+            <tbody>
                 <% @transactions.each do |transaction| %>
-                <% @total << transaction.amount_spent.to_f%>
+                <tr>
+                    <td><%=transaction.purchase_date()%></td>
+                    <td><%=(Category.find(transaction.category_id)).name()%></td>
+                    <td><%=(Vendor.find(transaction.vendor_id)).name()%></td>
+                    <td>$<%=transaction.amount_spent%></td>
+                    <td><form action="/moneycashboard/transaction-deleted/<%=transaction.id%>" method="post"><input type="submit" value="Delete"></form></td>
+                </tr>
                 <%end%>
-                <td class="total">$<%=@total.sum()%></td>
-                <td></td>
-            </tr>
-        </tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td class="total">Total spent</td>
+                    <% @total = [] %>
+                    <% @transactions.each do |transaction| %>
+                    <% @total << transaction.amount_spent.to_f%>
+                    <%end%>
+                    <td class="total">$<%=@total.sum()%></td>
+                    <td></td>
+                </tr>
+            </tbody>
 
-    </table>
+        </table>
+    </div>
 
 </div>

@@ -1,9 +1,16 @@
 <div class="page budget">
-<h2>Here are the details of the budget you've set:</h2>
+<h2>Your Budget</h2>
+
+<h3>Here are the details of the budget you've set:</h3>
 
 <p>Initial budget: $<%=@budget.initial%></p>
 <p>Remaining budget: $<%=@budget.remaining%></p>
 
+<br>
+<br>
+<br>    
+
+<h3>Would you like to amend your budget?</h3>
 <form action="/moneycashboard/budget-updated" method="post">
     <label for="budgetUpdate">Amount to amend budget by:</label>
     <input type="number" name="value" id="budgetUpdate" />

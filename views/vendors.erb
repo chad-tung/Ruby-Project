@@ -1,21 +1,26 @@
 <div class="page vendors">
 
-<h3>Add vendor</h3>
-<form class="side_form" action="/moneycashboard/vendor-added" method="post">
-    <label for="vendorAdd">Enter vendor name:</label>
-    <input type="text" name="name" id="vendorAdd" />
-    <input type="submit" value="Add">
-</form>
-<h2>Here are a list of vendors and your purchases from them</h2>
+    <h2>Vendors</h2>
 
-<% @vendors.each do |vendor| %>
-<h3><%=vendor.name%></h3>
-<% vendor.transactions.each do |transaction| %>
-<p>Category: <%=(Category.find(transaction.category_id)).name%></p>
-<p>Date: <%=transaction.purchase_date()%></p>
-<p>Amount spent: $<%=transaction.amount_spent%></p>
-<hr>
-<%end%>
-<hr>
-<%end%>
+    <div class="vendor_form">
+        <h3>Add vendor</h3>
+        <form class="side_form" action="/moneycashboard/vendor-added" method="post">
+            <label for="vendorAdd">Enter vendor name:</label>
+            <input type="text" name="name" id="vendorAdd" />
+            <input type="submit" value="Add">
+        </form>
+    </div>
+
+    <h3>Here are a list of vendors and your purchases from them</h3>
+
+    <% @vendors.each do |vendor| %>
+    <h4><%=vendor.name%></h4>
+    <% vendor.transactions.each do |transaction| %>
+    <p>Date: <%=transaction.purchase_date()%></p>
+    <p>Category: <%=(Category.find(transaction.category_id)).name%></p>
+    <p>Amount spent: $<%=transaction.amount_spent%></p>
+    <hr>
+    <%end%>
+    <hr>
+    <%end%>
 </div>

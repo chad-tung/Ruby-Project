@@ -1,58 +1,57 @@
 <div class="page home">
-<h2>Hi <%= @user.name() %>, welcome back to your account. </h2>
-<h3>Here's a quick summary of your budget status and expenditure:</h3>
+    <h2>Hi <%= @user.name() %>, welcome back to your account. </h2>
+    <h3>Here's a quick summary of your budget status and expenditure:</h3>
 
-<ul>
-    <li><%=(@user.budget()).check() %></li>
-    <br>
-    <li>Your current remaining balance is $<%= (@user.budget()).remaining() %></li>
-    <br>
-    <li>Since using this app, you've logged <%=@transactions.count()%> transactions, totalling to $<%=((@user.budget).initial - (@user.budget).remaining) %></li>
-</ul>
-
-<h4>Remember, you are budgeting as you <%= @user.goals%>!</h4>
-
-<div class="transaction_form">
-<h3>Would you like to add in a recent transaction?</h3>
-
-<form action="/moneycashboard/transaction-complete" method="POST">
-    <div class="transaction_form_selection">
-        <label for="user">Select user:</label>
-        <select name="user_id" id="userSelect">
-            <option value="<%=@user.id%>"><%= @user.name() %></option>
-        </select>
+    <ul>
+        <li><%=(@user.budget()).check() %></li>
         <br>
-
-        <label for="category">Category:</label>
-        <select name="category_id" id="categorySelect">
-            <% @categories.each do |category| %>
-            <option value="<%=category.id() %>"><%= category.name()%></option>
-            <%end%>
-        </select>
+        <li>Your current remaining balance is $<%= (@user.budget()).remaining() %></li>
         <br>
+        <li>Since using this app, you've logged <%=@transactions.count()%> transactions, totalling to $<%=((@user.budget).initial - (@user.budget).remaining) %></li>
+    </ul>
 
-        <label for="vendor">Vendor:</label>
-        <select name="vendor_id" id="vendorSelect">
-            <% @vendors.each do |vendor| %>
-            <option value="<%=vendor.id() %>"><%= vendor.name()%></option>
-            <%end%>
-        </select>
-        <br>
+    <h4>Remember, you are budgeting as you <%= @user.goals%>!</h4>
+    <div class="transaction_form">
+        <h3>Would you like to add in a recent transaction?</h3>
+
+        <form class="transaction_form_selection" action="/moneycashboard/transaction-complete" method="POST">
+            <label for="user">Select user:</label>
+            <select name="user_id" id="userSelect">
+                <option value="<%=@user.id%>"><%= @user.name() %></option>
+            </select>
+            <br><br>
+
+            <label for="category">Category:</label>
+            <select name="category_id" id="categorySelect">
+                <% @categories.each do |category| %>
+                <option value="<%=category.id() %>"><%= category.name()%></option>
+                <%end%>
+            </select>
+            <br><br>
+
+            <label for="vendor">Vendor:</label>
+            <select name="vendor_id" id="vendorSelect">
+                <% @vendors.each do |vendor| %>
+                <option value="<%=vendor.id() %>"><%= vendor.name()%></option>
+                <%end%>
+            </select>
+            <br><br>
 
 
 
-        <label for="dateInput">Date of purchase:</label>
-        <input type="date" name="purchase_date" id="dateInput" />
-        <br>
+            <label for="dateInput">Date of purchase:</label>
+            <input type="date" name="purchase_date" id="dateInput" />
+            <br><br>
 
-        <label for="spentInput">Amount spent:</label>
-        <input type="float" name="amount_spent" id="spentInput" />
-        <br>
+            <label for="spentInput">Amount spent:</label>
+            <input type="float" name="amount_spent" id="spentInput" />
+            <br><br>
 
-        <input type="submit" value="Submit" />
+            <input type="submit" value="Submit" />
+
+        </form>
     </div>
-</form>
-</div>
+
 </div>
 
         <!-- ALL COMPLETE TRASH  -->
