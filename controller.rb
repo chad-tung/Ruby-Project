@@ -43,6 +43,10 @@ get '/moneycashboard/budget' do
     erb( :budget )
 end
 
+get '/moneycashboard/coming_soon' do
+    erb( :coming_soon )
+end
+
 post '/moneycashboard/transaction-complete' do
     @transaction = Transaction.new(params)
     @transaction.save()
@@ -74,4 +78,11 @@ post '/moneycashboard/vendor-added' do
     @vendor = Vendor.new(params)
     @vendor.save()
     erb( :vendor_added )
+end
+
+post '/moneycashboard/donation' do
+    @budget = Budget.all().first()
+    @budget.initial_update(- params['amount'].to_f)
+    @budget.remaining_update
+    erb( :thanks )
 end
