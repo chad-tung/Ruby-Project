@@ -13,7 +13,7 @@ CREATE TABLE users (
 
 CREATE TABLE budgets (
     id SERIAL8 PRIMARY KEY,
-    user_id INT8 REFERENCES users(id),
+    user_id INT8 REFERENCES users(id) ON DELETE CASCADE,
     initial FLOAT,
     remaining FLOAT
 );
@@ -25,8 +25,8 @@ CREATE TABLE categories (
 
 CREATE TABLE limits (
     id SERIAL8 PRIMARY KEY,
-    user_id INT8 REFERENCES users(id),
-    category_id INT8 REFERENCES categories(id),
+    user_id INT8 REFERENCES users(id) ON DELETE CASCADE,
+    category_id INT8 REFERENCES categories(id) ON DELETE CASCADE,
     percentage FLOAT
 );
 
@@ -37,9 +37,9 @@ CREATE TABLE vendors (
 
 CREATE TABLE transactions (
     id SERIAL8 PRIMARY KEY,
-    user_id INT8 REFERENCES users(id),
-    category_id INT8 REFERENCES categories(id),
-    vendor_id INT8 REFERENCES vendors(id),
+    user_id INT8 REFERENCES users(id) ON DELETE CASCADE,
+    category_id INT8 REFERENCES categories(id) ON DELETE CASCADE,
+    vendor_id INT8 REFERENCES vendors(id) ON DELETE CASCADE,
     purchase_date DATE,
     amount_spent FLOAT
 );

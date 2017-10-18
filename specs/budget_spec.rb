@@ -51,12 +51,21 @@ class TestBudget < Minitest::Test
     end
 
     def teardown()
-        Transaction.delete_all()
-        Vendor.delete_all()
-        Limit.delete_all()
-        Category.delete_all()
-        Budget.delete_all()
-        User.delete_all()
+      @transaction1.delete()
+      @transaction2.delete()
+      @transaction3.delete()
+      @transaction4.delete()
+      @vendor1.delete()
+      @vendor2.delete()
+      @vendor3.delete()
+      @limit1.delete()
+      @limit2.delete()
+      @limit3.delete()
+      @category1.delete()
+      @category2.delete()
+      @category3.delete()
+      @budget.delete()
+      @user.delete()
     end
 
     def test_budget_update()
