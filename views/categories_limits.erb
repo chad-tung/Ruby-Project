@@ -1,11 +1,27 @@
-<div class="page">
-<h2>Here is the list of categories and the limits you've set on each.</h2>
+<div class="page cat_limit">
+
+<h2>Edit your limits</h2>
+<form class = "side_form"action="/moneycashboard/limit-updated" method="post">
+    <label for="category">Category to change:</label>
+    <select name="category_id" id="catSelect">
+        <% @categories.each do |category| %>
+        <option value="<%=category.id() %>"><%= category.name()%></option>
+        <%end%>
+    </select>
+    <br>
+    <label for="limitUpdate">Change limit percentage:</label>
+    <input type="number" name="percentage" id="limitUpdate" />
+    <input type="submit" value="Update">
+</form>
+
+<h3>Here is the list of categories and the limits you've set on each.</h3>
 
 <% @categories.each do |category| %>
 <h4>Summary of category: <%=category.name()%></h4>
 <p>Limit: <%=category.limit_percentage*100%>% of budget = $<%=@budget.initial * category.limit_percentage%></p>
 <p>Total spent: $<%=category.sum_transactions()%></p>
 <p>Limit left: <%=(category.limits).check%></p>
+
 
 <h5>Here are a list of the purchases within the category <%=category.name().downcase()%></h5>
 <% category.transactions.each do |transaction| %>

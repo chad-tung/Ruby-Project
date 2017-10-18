@@ -14,7 +14,6 @@ CREATE TABLE users (
 CREATE TABLE budgets (
     id SERIAL8 PRIMARY KEY,
     user_id INT8 REFERENCES users(id),
-    type VARCHAR(255),
     initial FLOAT,
     remaining FLOAT
 );

@@ -45,13 +45,27 @@ class Limit
     end
 
     def self.find(id)
-        sql = "SELECT * FROM limits WHERE id = $1;"
+        sql = "SELECT * FROM limits WHERE limits.id = $1;"
         values = [id]
         limit = SqlRunner.run(sql, values).first()
         return Limit.new(limit)
     end
 
+    def self.find_by_cat(category_id)
+        sql = "SELECT * FROM limits WHERE limits.category_id = $1;"
+        values = [category_id]
+        limit = SqlRunner.run(sql, values).first()
+        return Limit.new(limit)
+    end
+
+    def percentage_update(percentage)
+        @percentage = percentage
+        update()
+    end
+
+
     def check()
+        #For this function, we want to check how much of the limit they have consumed.
         #Get the amount_spent from transactions and the category name.
         sql = "SELECT transactions.amount_spent, categories.name FROM transactions INNER JOIN categories ON transactions.category_id = categories.id WHERE categories.id = $1;"
         values = [@category_id]

@@ -1,4 +1,4 @@
-<div class="page">
+<div class="page home">
 <h2>Hi <%= @user.name() %>, welcome back to your account. </h2>
 <h3>Here's a quick summary of your budget status and expenditure:</h3>
 
@@ -25,16 +25,16 @@
 
         <label for="category">Category:</label>
         <select name="category_id" id="categorySelect">
-            <% @categories.each do |acategory| %>
-            <option value="<%=acategory.id() %>"><%= acategory.name()%></option>
+            <% @categories.each do |category| %>
+            <option value="<%=category.id() %>"><%= category.name()%></option>
             <%end%>
         </select>
         <br>
 
         <label for="vendor">Vendor:</label>
         <select name="vendor_id" id="vendorSelect">
-            <% @vendors.each do |avendor| %>
-            <option value="<%=avendor.id() %>"><%= avendor.name()%></option>
+            <% @vendors.each do |vendor| %>
+            <option value="<%=vendor.id() %>"><%= vendor.name()%></option>
             <%end%>
         </select>
         <br>

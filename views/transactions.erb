@@ -1,17 +1,39 @@
-<div class="page">
-<h2>Here are a list of all your transactions</h2>
+<div class="page transactions">
+    <h2>Here is a table of all your transactions</h2>
 
-<% @transactions.each do |transaction| %>
-<p>ID: <%=transaction.id%></p>
-<p>Category: <%=(Category.find(transaction.category_id)).name()%></p>
-<p>Vendor: <%=(Vendor.find(transaction.vendor_id)).name()%></p>
-<p>Date: <%=transaction.purchase_date()%></p>
-<p>Amount spent: $<%=transaction.amount_spent%></p>
+    <table>
+        <th scope="col">
+            <tr class="table_heading">
+                <td>Category</td>
+                <td>Vendor</td>
+                <td>Date</td>
+                <td>Amount spent</td>
+                <td>Delete</td>
+            </tr>
+        </th>
+        <tbody>
+            <% @transactions.each do |transaction| %>
+            <tr>
+                <td><%=(Category.find(transaction.category_id)).name()%></td>
+                <td><%=(Vendor.find(transaction.vendor_id)).name()%></td>
+                <td><%=transaction.purchase_date()%></td>
+                <td>$<%=transaction.amount_spent%></td>
+                <td><form action="/moneycashboard/transaction-deleted/<%=transaction.id%>" method="post"><input type="submit" value="Delete"></form></td>
+            </tr>
+            <%end%>
+            <tr>
+                <td></td>
+                <td></td>
+                <td class="total">Total spent</td>
+                <% @total = [] %>
+                <% @transactions.each do |transaction| %>
+                <% @total << transaction.amount_spent.to_f%>
+                <%end%>
+                <td class="total">$<%=@total.sum()%></td>
+                <td></td>
+            </tr>
+        </tbody>
 
-<form action="/moneycashboard/transaction-deleted/<%=transaction.id%>" method="post">
-    <input type="submit" value="Delete">
-</form>
+    </table>
 
-<hr>
-<%end%>
 </div>

@@ -1,5 +1,12 @@
-<div class="page">
-<h2>Here are a list of the vendors you've used, and your purchases from them</h2>
+<div class="page vendors">
+
+<h3>Add vendor</h3>
+<form class="side_form" action="/moneycashboard/vendor-added" method="post">
+    <label for="vendorAdd">Enter vendor name:</label>
+    <input type="text" name="name" id="vendorAdd" />
+    <input type="submit" value="Add">
+</form>
+<h2>Here are a list of vendors and your purchases from them</h2>
 
 <% @vendors.each do |vendor| %>
 <h3><%=vendor.name%></h3>
