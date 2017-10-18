@@ -23,6 +23,12 @@ class Category
         SqlRunner.run(sql, values)
     end
 
+    def delete()
+        sql = "DELETE FROM categories WHERE categories.id = $1;"
+        values = [@id]
+        SqlRunner.run(sql, values)
+    end
+
     def self.all()
         sql = "SELECT * FROM categories;"
         values = []
